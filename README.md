@@ -6,7 +6,7 @@
 Create repository 'vim-profile' on Github and clone it to the local file system. This avoids having to create a new
 repository on github from the cli.
 ```
-	=> git clone https://github.com/zaphod80013/vim-profile.git
+   => git clone https://github.com/zaphod80013/vim-profile.git
 ```
 
 To create from the CLI, you still need to create an empty repository on github for this to work
@@ -40,7 +40,7 @@ with a separate folder for globally applicable plugins.
 There are two basic approaches, firstly you can create the ~/.vim (or appropriate directory for your system) by cloning 
 the repository as follows:
 ```
-=> git clone --recursive https://github.com/zaphod80013/vim-profile.git ~/.vim`
+   => git clone --recursive https://github.com/zaphod80013/vim-profile.git ~/.vim`
 ```
 or alternatively you can clone the repo and link the corresponding profile directory to it.
 ```
@@ -56,7 +56,7 @@ All the following commands should be executed from the root of the git repositor
 
 #### Checking out a repository with submodules
 ```
-	=> git clone --recursive https://github.com/zaphod80013/vim-profile.git
+   => git clone --recursive https://github.com/zaphod80013/vim-profile.git
 ```
 
 #### Adding a plugin from a git repository as a submodlue 
@@ -127,7 +127,7 @@ Leader Character /
 
 | Sequence  |Description| 
 |:----:|:----------------
-|/<space>| Turn off Highlighting (i.e. from search)	
+|/\<space>| Turn off Highlighting (i.e. from search)	
 |/ev|Edit vimrc file
 |/sv|Source vimrc file
 |/u|Open Unicode CheatSheet in new Tab
@@ -136,15 +136,15 @@ Leader Character /
 
 | Sequence  |Description| 
 |:----:|:----------------
-|<space>|Toggle folding
-| &#x2191;| Move up physical rather than logical line
-| &#x2193;| Move down physical rather than logical line
+|\<space>|Toggle folding
+| **&#x2191;**| Move up physical rather than logical line
+| **&#x2193;**| Move down physical rather than logical line
 
-### Command Mode (:) Commands
+### Command Mode ( : ) Commands
 
 | Sequence  |Description| 
 |:----:|:----------------
-|e<space>|:tabedit
+|e\<space>|:tabedit
 
 ### Insert Mode Commands
 
