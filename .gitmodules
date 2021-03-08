@@ -1,0 +1,9 @@
+[submodule "pack/global/start/badwolf"]
+	path = pack/global/start/badwolf
+	url = https://github.com/sjl/badwolf.git
+[submodule "pack/global/start/unicode.vim"]
+	path = pack/global/start/unicode.vim
+	url = https://github.com/chrisbra/unicode.vim.git
+[submodule "pack/docker/start/Dockerfile.vim"]
+	path = pack/docker/start/Dockerfile.vim
+	url = https://github.com/ekalinin/Dockerfile.vim.git

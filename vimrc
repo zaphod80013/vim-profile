@@ -1,0 +1,216 @@
+"--------------------------------------------------------------------------------------------------
+"	Enable Vim Features
+"--------------------------------------------------------------------------------------------------
+
+set nocompatible								" Turn off vi compatability
+set encoding=utf-8							" set default encoding to UTF-8
+scriptencoding utf-8							" Assume this script is utf-8 encoded
+
+"--------------------------------------------------------------------------------------------------
+"	Colour Management
+"--------------------------------------------------------------------------------------------------
+"
+" Create colours for the status line
+"
+" Warning autocmd is additive and will create duplicates, using an augroup
+" allows us to redefine rather than add. The 'autocmd!' is used to clear the
+" group before adding, thus avoiding duplicates. 
+"
+augroup MyColors
+    autocmd!
+    autocmd ColorScheme * highlight User1 ctermbg=11 ctermfg=00 cterm=NONE
+                      \ | highlight User2 ctermbg=02 ctermfg=00 cterm=NONE
+                      \ | highlight User3 ctermbg=11 ctermfg=00 cterm=NONE
+                      \ | highlight User4 ctermbg=05 ctermfg=15 cterm=NONE
+augroup END
+"
+"	Configure Colour Scheme Set default colour scheme
+"
+colorscheme badwolf							" Set default colour scheme
+set termguicolors								" Enable 24bit colours
+
+"--------------------------------------------------------------------------------------------------
+"	File Type Management
+"--------------------------------------------------------------------------------------------------
+
+filetype on										" Enable file type recognition
+filetype indent on      					" load type specific indent files from .../indent/<>.vim
+filetype plugin on							" load type specific operations from .../plugin/<>.vim
+syntax enable									" load type specific syntax rules from .../syntax/<>.vim
+
+augroup Python
+   autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+   autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+augroup END
+
+"--------------------------------------------------------------------------------------------------
+"	Configure UI 
+"--------------------------------------------------------------------------------------------------
+"
+"	Tabstops
+"
+set tabstop=3   	      	" Move 3 visual spaces per tab 
+set softtabstop=0       	" Move 3 spaces per tab when editing
+set expandtab            	" Use spaces for tabs by default
+set shiftwidth=3				" ? not sure I understand this
+set smarttab					" insert shiftwidth at BOL tabstop elsewhere
+"
+"	Appearance
+"
+set number              	" show line numbers by default
+set showcmd             	" show command in bottom bar ? does it work
+set cursorline          	" highlight current line with undeline bar
+set wildmenu            	" visual autocomplete for command menu
+set lazyredraw          	" redraw only when we need to.
+set showmatch           	" highlight matching [{()}]
+
+"
+"	Folding
+"
+set foldenable          	" enable folding
+set foldlevelstart=99    	" by default start with no folding
+set foldnestmax=10      	" 10 nested fold max
+set foldmethod=indent  	 	" fold based on indent level
+
+"
+"  Spell Checker
+"
+set spelllang=en_us,en_gb
+set spellfile=~/.vim/spell/en.utf-8.add
+hi clear SpellBad
+hi clear SpellCap
+hi clear SpellRare
+hi clear SpellLocal
+hi SpellBad   ctermfg=05 cterm=underline
+hi SpellCap   ctermfg=11 cterm=underline
+hi SpellRare  ctermfg=02 cterm=underline ctermbg=11
+hi SpellLocal ctermfg=00 cterm=underline ctermbg=11
+"
+"  space open/closes folds
+"
+nnoremap <space> za		
+
+"
+"	Search
+" 
+set incsearch           	" search as characters are entered
+set hlsearch            	" highlight matches
+set ignorecase smartcase 	" ignore case when searching
+"
+" turn off search highlight
+"
+nnoremap <leader><space> :nohlsearch<CR>
+
+"
+"	Cursor movement 
+"
+
+"	Move down by visual rather than file line
+noremap <down> g<down>		
+
+"	Move up by visual rather than file line
+noremap <up> g<up>
+
+"--------------------------------------------------------------------------------------------------
+" Setup for bufferes in tabs & tabbed editing
+"--------------------------------------------------------------------------------------------------
+
+cnoremap e<space> tabedit<space>
+noremap  <silent> <f7> :tabp<cr>
+noremap! <silent> <f7> <C-o>:tabp<cr>
+noremap  <silent> <f8> :tabn<cr>
+noremap! <silent> <f8> <C-o>:tabn<cr>
+
+"--------------------------------------------------------------------------------------------------
+" Shortcutis to edit/source this file
+"--------------------------------------------------------------------------------------------------
+
+let vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+nnoremap <leader>ev :tabedit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+execute 'nnoremap <leader>u :tabedit ' . vimdir . '/UnicodeCharacters.txt<cr>'
+
+"--------------------------------------------------------------------------------------------------
+" Configure function keys
+"--------------------------------------------------------------------------------------------------
+
+"
+" Toggle Line numbers on/off
+"
+noremap  <silent> <f2> :set number!<cr>
+noremap! <silent> <f2> <C-o>:set number!<cr>
+
+"
+" Toggle Invisible Characters on/of, first define 
+" mappings for non-visible characters the the toggle
+"
+set listchars=space:·,nbsp:✦,eol:$,tab:»\ ,trail:~,extends:>,precedes:<
+noremap  <silent> <f3> :set list!<CR>
+noremap! <silent> <f3> <C-o>:set list!<CR>
+
+"
+" Toggle softtab on/off
+"
+noremap  <silent> <f4> :set expandtab!<CR>
+noremap! <silent> <f4> <C-o>:set expandtab!<CR>
+
+"
+" Toggle wrap on/off
+"
+noremap  <silent> <f5> :set wrap!<CR>
+noremap! <silent> <f5> <C-o>:set wrap!<CR>
+
+"
+" Toggle spelling check on off
+"
+noremap  <silent> <f6> :setlocal spell!<CR>
+noremap! <silent> <f6> <C-o>:setlocal spell!<CR>
+
+
+
+"--------------------------------------------------------------------------------------------------
+" Configure Status line
+"--------------------------------------------------------------------------------------------------
+
+"
+" Function to display state of expandtab setting
+"
+function! ExpandTab()
+   let l:expand = &expandtab
+   return l:expand == 'noexpandtab'?'on':'off'
+endfunction
+
+"
+" Function to display state of wrap
+"
+function! Wrap()
+   let l:wrap = &wrap
+   return l:wrap == 'nowrap'?'on':'off'
+endfunction
+
+"
+" function to display state of spell
+"
+function! Spell()
+	let l:spell = &spell
+   return l:spell == 'nospell'?'on':'off'
+endfunction
+
+"
+" Status line definition.
+"
+set laststatus=2
+set statusline=
+set statusline+=%1*
+set statusline+=%(L\\\ F2=Num\ F3=Vis\ F4=SoftTab-%{ExpandTab()}\ F5=Warp-%{Wrap()}\ F6=Spell-%{Spell()}\ F7/8=tab%)
+set statusline+=%=
+set statusline+=%2*File:%-10.25(%t%)
+set statusline+=%3*
+set statusline+=%-30.40(Info:\ \[%{&fileformat}\]\[%{&fileencoding?&fileencoding:&encoding}\]%y%r%m%) 
+set statusline+=%4*
+set statusline+=%-21.21(Pos:\[%n\]\ %p%%\ %l:%c%)
+set statusline+=%7.7(\ u%05.5B%)
+
+set belloff=all
+
+
