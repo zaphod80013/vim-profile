@@ -28,6 +28,18 @@ augroup END
 "
 colorscheme badwolf							" Set default colour scheme
 set termguicolors								" Enable 24bit colours
+"
+" Badwolf Options
+"
+" Gutter darker than edit area: 0 off 1 on
+let g:badwolf_darkgutter = 1 
+" Tab bar compared to edit area: 0 darker 1 same 2 brighter 3 btigher still 
+let g:badwolf_tabline = 0 
+" Underline <a> tags in html: 0 off 1 on
+let g:badwolf_html_link_underline = 1 
+" highlight css tags in html: 0 off 1 on
+let g:badwolf_css_props_highlight = 1
+
 
 "--------------------------------------------------------------------------------------------------
 "	File Type Management
@@ -49,10 +61,10 @@ augroup END
 "
 "	Tabstops
 "
-set tabstop=3   	      	" Move 3 visual spaces per tab 
-set softtabstop=0       	" Move 3 spaces per tab when editing
+set tabstop=4   	      	" Move 4 visual spaces per tab 
+set softtabstop=0       	" Move 4 spaces per tab when editing
 set expandtab            	" Use spaces for tabs by default
-set shiftwidth=3				" ? not sure I understand this
+set shiftwidth=4				" ? not sure I understand this
 set smarttab					" insert shiftwidth at BOL tabstop elsewhere
 "
 "	Appearance
@@ -129,6 +141,14 @@ let vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 execute 'nnoremap <leader>u :tabedit ' . vimdir . '/UnicodeCharacters.txt<cr>'
+
+"
+" Looking into having /r open the vim-profile readme in browser WIP how to
+" make platform independent
+"
+"Open markdown files with Chrome.
+"autocmd BufEnter *.md exe 'noremap <F5> :!start C:\Users\tomas\AppData\Local\Google\Chrome\Application\chrome.exe %:p<CR>'
+"https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl/related
 
 "--------------------------------------------------------------------------------------------------
 " Configure function keys

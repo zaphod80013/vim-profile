@@ -149,7 +149,7 @@ Leader Character /
 ### Insert Mode Commands
 
 | Sequence  |Description| 
-|:----:|:----------------
+|:----|:----------------
 |^v u*nnnn*|Enter 4 digit Unicode Character
 |^v U*nnnnnnnn*|Enter 8 digit Unicode Character
  
