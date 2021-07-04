@@ -52,3 +52,14 @@ Useful Synbols
    21BA  ↺  21BB  ↻  21C4  ⇄  21C5  ⇅  21C6  ⇆  21F5  ⇵   2261  ≡  2262  ≢
 
 
+Writing Characters
+
+   00A0 - Non-breaking space
+
+
+Subscript & SuperScripts
+
+   2070  ⁰  00B9  ¹  00B2  ²  00B3  ³  2074  ⁴  2075  ⁵  2076  ⁶  2077  ⁷  2078  ⁸  2079  ⁹
+
+   2080  ₀  2081  ₁  2082  ₂  2083  ₃  2084  ₄  2085  ₅  2086  ₆  2087  ₇  2088  ₈  2089  ₉
+ 
