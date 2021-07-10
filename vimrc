@@ -23,6 +23,128 @@ augroup MyColors
                       \ | highlight User3 ctermbg=11 ctermfg=00 cterm=NONE
                       \ | highlight User4 ctermbg=05 ctermfg=15 cterm=NONE
 augroup END
+
+"--------------------------------------------------------------------------------------------------
+"	File Type Management
+"--------------------------------------------------------------------------------------------------
+
+filetype on                         " Enable file type recognition
+filetype indent on					" load type specific indent files from .../indent/<>.vim
+filetype plugin on                  " load type specific operations from .../plugin/<>.vim
+syntax enable                       " load type specific syntax rules from .../syntax/<>.vim
+
+augroup Python
+   autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+   autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+augroup END
+
+augroup Markdown
+   autocmd!
+   autocmd BufNewFile,BufRead *.md set filetype=markdown
+   autocmd FileType markdown set cursorline
+   autocmd FileType markdown set conceallevel=2
+   autocmd FileType markdown setlocal spell spelllang=en_us
+   autocmd FileType markdown execute ':Limeligh'
+
+augroup END
+
+"--------------------------------------------------------------------------------------------------
+" Custom Functions
+"--------------------------------------------------------------------------------------------------
+"
+function! ProfileHelp()
+    let l:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+    if expand('%:t') == 'ProfileCheatSheet.md'
+        execute ':bd!'
+        echon ''
+    els    
+        execute ':tabedit ' . l:vimdir . '/cheatsheets/ProfileCheatSheet.md'        
+        echon ''
+    endif    
+endfunction
+
+function! AnsibleHelp()
+    let l:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+    if expand('%:t') == 'AnsibleCheatSheet.md'
+        execute ':bd!'
+        echon ''
+    els    
+        execute ':tabedit ' . l:vimdir . '/cheatsheets/AnsibleCheatSheet.md'        
+        echon ''
+    endif    
+endfunction
+
+function! UnicodeHelp()
+    let l:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+    if expand('%:t') == 'UnicodeCharacters.md'
+        execute ':bd!'
+        echon ''
+    els    
+        execute ':tabedit ' . l:vimdir . '/cheatsheets/UnicodeCharacters.md'        
+        echon ''
+    endif    
+endfunction
+
+function! LinuxHelp()
+    let l:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+    if expand('%:t') == 'LinuxCheatSheet.md'
+        execute ':bd!'
+        echon ''
+    els    
+        execute ':tabedit ' . l:vimdir . '/cheatsheets/LinuxCheatSheet.md'        
+        echon ''
+    endif    
+endfunction
+
+"
+" Function to display state of number setting
+"
+function! Number()
+   let l:number = &number
+   return l:number == 'nonumber'?'NUM':'num'
+endfunction
+
+"
+" Function to display state of number setting
+"
+function! List()
+   let l:list = &list
+   return l:list == 'nonlist'?'VIS':'vis'
+endfunction
+
+"
+" Function to display state of expandtab setting
+"
+function! ExpandTab()
+   let l:expand = &expandtab
+   return l:expand == 'noexpandtab'?'TAB':'tab'
+endfunction
+
+"
+" Function to display state of wrap
+"
+function! Wrap()
+   let l:wrap = &wrap
+   return l:wrap == 'nowrap'?'WRAP':'wrap'
+endfunction
+
+"
+" function to display state of spell
+"
+function! Spell()
+	let l:spell = &spell
+   return l:spell == 'nospell'?'SPELL':'spell'
+endfunction
+
+"
+" function to display state of spell
+"
+"function! Limelight()
+"	let l:light = &Limelight
+"   return l:light == 'nospell'?'LLIGHT':'llight'
+"endfunction
+
+
 "
 "	Configure Colour Scheme Set default colour scheme
 "
@@ -40,20 +162,6 @@ let g:badwolf_html_link_underline = 1
 " highlight css tags in html: 0 off 1 on
 let g:badwolf_css_props_highlight = 1
 
-
-"--------------------------------------------------------------------------------------------------
-"	File Type Management
-"--------------------------------------------------------------------------------------------------
-
-filetype on										" Enable file type recognition
-filetype indent on      					" load type specific indent files from .../indent/<>.vim
-filetype plugin on							" load type specific operations from .../plugin/<>.vim
-syntax enable									" load type specific syntax rules from .../syntax/<>.vim
-
-augroup Python
-   autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-   autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-augroup END
 
 "--------------------------------------------------------------------------------------------------
 "	Configure UI 
@@ -140,7 +248,12 @@ noremap! <silent> <f8> <C-o>:tabn<cr>
 let vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-execute 'nnoremap <leader>u :tabedit ' . vimdir . '/UnicodeCharacters.txt<cr>'
+execute 'nnoremap <leader>h :call ProfileHelp() <cr>'
+execute 'nnoremap <leader>u :call UnicodeHelp() <cr>'
+execute 'nnoremap <leader>a :call AnsibleHelp() <cr>'
+execute 'nnoremap <leader>l :call LinuxHelp() <cr>'
+
+":call ToggleLineNumber()<CR>
 
 "
 " Looking into having /r open the vim-profile readme in browser WIP how to
@@ -186,47 +299,32 @@ noremap! <silent> <f5> <C-o>:set wrap!<CR>
 noremap  <silent> <f6> :setlocal spell!<CR>
 noremap! <silent> <f6> <C-o>:setlocal spell!<CR>
 
+"
+" Toggle Limelight on off
+"
+execute 'noremap  <silent> <f9>  :Limelight!!<CR>'
+execute 'noremap! <silent> <f9> <C-o> :Limelight!!<CR>'
+
 
 
 "--------------------------------------------------------------------------------------------------
 " Configure Status line
 "--------------------------------------------------------------------------------------------------
 
-"
-" Function to display state of expandtab setting
-"
-function! ExpandTab()
-   let l:expand = &expandtab
-   return l:expand == 'noexpandtab'?'on':'off'
-endfunction
-
-"
-" Function to display state of wrap
-"
-function! Wrap()
-   let l:wrap = &wrap
-   return l:wrap == 'nowrap'?'on':'off'
-endfunction
-
-"
-" function to display state of spell
-"
-function! Spell()
-	let l:spell = &spell
-   return l:spell == 'nospell'?'on':'off'
-endfunction
 
 "
 " Status line definition.
 "
+" old info section: set statusline+=%-30.40(Info:\ \[%{&fileformat}\]\[%{&fileencoding?&fileencoding:&encoding}\]%y%r%m%) 
+"
 set laststatus=2
 set statusline=
+set statusline+=%2*File:%-10.50(%t%m%r%)
 set statusline+=%1*
-set statusline+=%(L\\\ F2=Num\ F3=Vis\ F4=SoftTab-%{ExpandTab()}\ F5=Warp-%{Wrap()}\ F6=Spell-%{Spell()}\ F7/8=tab%)
+set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N%)
+"set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ %{Limelight()}%)
 set statusline+=%=
-set statusline+=%2*File:%-10.25(%t%)
-set statusline+=%3*
-set statusline+=%-30.40(Info:\ \[%{&fileformat}\]\[%{&fileencoding?&fileencoding:&encoding}\]%y%r%m%) 
+"set statusline+=%-90.90(%)
 set statusline+=%4*
 set statusline+=%-21.21(Pos:\[%n\]\ %p%%\ %l:%c%)
 set statusline+=%7.7(\ u%05.5B%)
