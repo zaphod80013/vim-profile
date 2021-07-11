@@ -7,3 +7,9 @@
 [submodule "pack/docker/start/Dockerfile.vim"]
 	path = pack/docker/start/Dockerfile.vim
 	url = https://github.com/ekalinin/Dockerfile.vim.git
+[submodule "pack/global/start/limelight.vim"]
+	path = pack/global/start/limelight.vim
+	url = https://github.com/junegunn/limelight.vim.git
+[submodule "pack/global/start/vim-markdown"]
+	path = pack/global/start/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
