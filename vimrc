@@ -20,8 +20,8 @@ augroup MyColors
     autocmd!
     autocmd ColorScheme * highlight User1 ctermbg=11 ctermfg=00 cterm=NONE
                       \ | highlight User2 ctermbg=02 ctermfg=00 cterm=NONE
-                      \ | highlight User3 ctermbg=11 ctermfg=00 cterm=NONE
-                      \ | highlight User4 ctermbg=05 ctermfg=15 cterm=NONE
+                      \ | highlight User3 ctermbg=01 ctermfg=07 cterm=NONE
+                      \ | highlight User4 ctermbg=05 ctermfg=07 cterm=NONE
 augroup END
 
 "--------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ augroup Markdown
    autocmd FileType markdown set cursorline
    autocmd FileType markdown set conceallevel=2
    autocmd FileType markdown setlocal spell spelllang=en_us
-   autocmd FileType markdown execute ':Limeligh'
+   autocmd FileType markdown execute ':Limelight'
 
 augroup END
 
@@ -67,7 +67,7 @@ function! AnsibleHelp()
     let l:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
     if expand('%:t') == 'AnsibleCheatSheet.md'
         execute ':bd!'
-        echon ''
+    echon ''
     els    
         execute ':tabedit ' . l:vimdir . '/cheatsheets/AnsibleCheatSheet.md'        
         echon ''
@@ -321,7 +321,7 @@ set laststatus=2
 set statusline=
 set statusline+=%2*File:%-10.50(%t%m%r%)
 set statusline+=%1*
-set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N%)
+set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ F9=LL%)
 "set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ %{Limelight()}%)
 set statusline+=%=
 "set statusline+=%-90.90(%)
