@@ -12,9 +12,9 @@ scriptencoding utf-8							" Assume this script is utf-8 encoded
 "
 " Create colours for the status line
 "
-" Warning autocmd is additive and will create duplicates, using an augroup
-" allows us to redefine rather than add. The 'autocmd!' is used to clear the
-" group before adding, thus avoiding duplicates. 
+" Warning autocmd is additive and will create duplicates, using an augroup allows us to redefine 
+" rather than add. The 'autocmd!' is used to clear the group before adding, thus avoiding 
+" duplicates. 
 "
 augroup MyColors
     autocmd!
@@ -33,27 +33,49 @@ filetype indent on					" load type specific indent files from .../indent/<>.vim
 filetype plugin on                  " load type specific operations from .../plugin/<>.vim
 syntax enable                       " load type specific syntax rules from .../syntax/<>.vim
 
+"
+" Python Specific options
+"
 augroup Python
-   autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-   autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+   autocmd BufNewFile,BufRead *.py set filetype=python
+   autocmd FileType python map <buffer> <F10> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+   autocmd FileType python imap <buffer> <F10> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 augroup END
 
+"
+" Markdown specific options
+"
 augroup Markdown
    autocmd!
    autocmd BufNewFile,BufRead *.md set filetype=markdown
    autocmd FileType markdown set cursorline
    autocmd FileType markdown set conceallevel=2
    autocmd FileType markdown setlocal spell spelllang=en_us
-   autocmd FileType markdown execute ':Limelight'
-
 augroup END
 
 "--------------------------------------------------------------------------------------------------
-" Custom Functions
+" Custom Leader Functions
 "--------------------------------------------------------------------------------------------------
+
+"
+" Display Ansible help \a  (toggle \a again to close)
+"
+function! AnsibleHelp()
+    let l:vimdir = fnamemodify(resolve(expand('$MYVIMRC:p')), ':h')
+    if expand('%:t') == 'AnsibleCheatSheet.md'
+        execute ':bd!'
+        echon ''
+    els    
+        execute ':tabedit ' . l:vimdir . '/cheatsheets/AnsibleCheatSheet.md'        
+        echon ''
+    endif    
+endfunction
+
+"
+" Display Profile help \h  (toggle \h again to close) 
 "
 function! ProfileHelp()
-    let l:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+    let l:vimdir = fnamemodify(resolve(expand('$MYVIMRC:p')), ':h')
     if expand('%:t') == 'ProfileCheatSheet.md'
         execute ':bd!'
         echon ''
@@ -63,19 +85,25 @@ function! ProfileHelp()
     endif    
 endfunction
 
-function! AnsibleHelp()
-    let l:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-    if expand('%:t') == 'AnsibleCheatSheet.md'
+"
+" Display Linux help \l  (toggle \l again to close) 
+"
+function! LinuxHelp()
+    let l:vimdir = fnamemodify(resolve(expand('$MYVIMRC:p')), ':h')
+    if expand('%:t') == 'LinuxCheatSheet.md'
         execute ':bd!'
-    echon ''
+        echon ''
     els    
-        execute ':tabedit ' . l:vimdir . '/cheatsheets/AnsibleCheatSheet.md'        
+        execute ':tabedit ' . l:vimdir . '/cheatsheets/LinuxCheatSheet.md'        
         echon ''
     endif    
 endfunction
 
+"
+" Display Unicode help \u  (toggle \u again to close) 
+"
 function! UnicodeHelp()
-    let l:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+    let l:vimdir = fnamemodify(resolve(expand('$MYVIMRC:p')), ':h')
     if expand('%:t') == 'UnicodeCharacters.md'
         execute ':bd!'
         echon ''
@@ -85,16 +113,28 @@ function! UnicodeHelp()
     endif    
 endfunction
 
-function! LinuxHelp()
-    let l:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-    if expand('%:t') == 'LinuxCheatSheet.md'
-        execute ':bd!'
-        echon ''
-    els    
-        execute ':tabedit ' . l:vimdir . '/cheatsheets/LinuxCheatSheet.md'        
-        echon ''
-    endif    
-endfunction
+"--------------------------------------------------------------------------------------------------
+" Leader Commands
+"--------------------------------------------------------------------------------------------------
+
+nnoremap <leader>ev :tabedit $MYVIMRC<cr>
+"
+" Reload vimrc
+"
+nnoremap <leader>sv :source $MYVIMRC<cr>
+"
+" turn off search highlight
+"
+nnoremap <leader><space> :nohlsearch<CR>               
+execute 'nnoremap <leader>a :call AnsibleHelp() <cr>'
+execute 'nnoremap <leader>h :call ProfileHelp() <cr>'
+execute 'nnoremap <leader>u :call UnicodeHelp() <cr>'
+execute 'nnoremap <leader>l :call LinuxHelp() <cr>'
+
+
+"--------------------------------------------------------------------------------------------------
+" Custom Status Line Functions
+"--------------------------------------------------------------------------------------------------
 
 "
 " Function to display state of number setting
@@ -139,28 +179,28 @@ endfunction
 "
 " function to display state of spell
 "
-"function! Limelight()
-"	let l:light = &Limelight
-"   return l:light == 'nospell'?'LLIGHT':'llight'
-"endfunction
+function! Limelight()
+   return !exists('#limelight')?'LLIGHT':'llight'
+endfunction
+"
+" function to display state of spell
+"
+function! Option()
+   return &filetype == 'python'?'F10=exec':'' 
+endfunction
 
 
-"
-"	Configure Colour Scheme Set default colour scheme
-"
-colorscheme badwolf							" Set default colour scheme
+"--------------------------------------------------------------------------------------------------
+" Editor Theme Configuration
+"--------------------------------------------------------------------------------------------------
+
+colorscheme badwolf			    				" Set default colour scheme
 set termguicolors								" Enable 24bit colours
-"
-" Badwolf Options
-"
-" Gutter darker than edit area: 0 off 1 on
-let g:badwolf_darkgutter = 1 
-" Tab bar compared to edit area: 0 darker 1 same 2 brighter 3 btigher still 
-let g:badwolf_tabline = 0 
-" Underline <a> tags in html: 0 off 1 on
-let g:badwolf_html_link_underline = 1 
-" highlight css tags in html: 0 off 1 on
-let g:badwolf_css_props_highlight = 1
+let g:badwolf_darkgutter = 1                    " Gutter darker than edit area: 0 off 1 on
+let g:badwolf_tabline = 0                       " Tab bar compared to edit area: 0) darker 1) same 
+                                                " 2) brighter 3) btigher still 
+let g:badwolf_html_link_underline = 1           " Underline <a> tags in html: 0 off 1 on
+let g:badwolf_css_props_highlight = 1           " Highlight css tags in html: 0 off 1 on
 
 
 "--------------------------------------------------------------------------------------------------
@@ -216,10 +256,6 @@ nnoremap <space> za
 set incsearch           	" search as characters are entered
 set hlsearch            	" highlight matches
 set ignorecase smartcase 	" ignore case when searching
-"
-" turn off search highlight
-"
-nnoremap <leader><space> :nohlsearch<CR>
 
 "
 "	Cursor movement 
@@ -240,18 +276,6 @@ noremap  <silent> <f7> :tabp<cr>
 noremap! <silent> <f7> <C-o>:tabp<cr>
 noremap  <silent> <f8> :tabn<cr>
 noremap! <silent> <f8> <C-o>:tabn<cr>
-
-"--------------------------------------------------------------------------------------------------
-" Shortcutis to edit/source this file
-"--------------------------------------------------------------------------------------------------
-
-let vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-nnoremap <leader>ev :tabedit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-execute 'nnoremap <leader>h :call ProfileHelp() <cr>'
-execute 'nnoremap <leader>u :call UnicodeHelp() <cr>'
-execute 'nnoremap <leader>a :call AnsibleHelp() <cr>'
-execute 'nnoremap <leader>l :call LinuxHelp() <cr>'
 
 ":call ToggleLineNumber()<CR>
 
@@ -321,8 +345,9 @@ set laststatus=2
 set statusline=
 set statusline+=%2*File:%-10.50(%t%m%r%)
 set statusline+=%1*
-set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ F9=LL%)
-"set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ %{Limelight()}%)
+"set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ F9=LL%)
+set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ %)
+set statusline+=%(F9=%{Limelight()}\ %{Option()}%)
 set statusline+=%=
 "set statusline+=%-90.90(%)
 set statusline+=%4*
