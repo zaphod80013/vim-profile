@@ -2,6 +2,13 @@
 "	Enable Vim Features
 "--------------------------------------------------------------------------------------------------
 
+let g:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')   " Save path to vim profile
+"
+" Alternative way to get path to vim profile at runtime in a vim script. 
+" l: is local scope g: is global scope
+"
+" let l:vimdir = fnamemodify(resolve(expand('$MYVIMRC:p')), ':h')
+"
 set nocompatible								" Turn off vi compatability
 set encoding=utf-8							" set default encoding to UTF-8
 scriptencoding utf-8							" Assume this script is utf-8 encoded
@@ -18,7 +25,7 @@ scriptencoding utf-8							" Assume this script is utf-8 encoded
 "
 augroup MyColors
     autocmd!
-    autocmd ColorScheme * highlight User1 ctermbg=11 ctermfg=00 cterm=NONE
+    autocmd ColorScheme * highlight User1 ctermbg=06 ctermfg=00 cterm=NONE
                       \ | highlight User2 ctermbg=02 ctermfg=00 cterm=NONE
                       \ | highlight User3 ctermbg=01 ctermfg=07 cterm=NONE
                       \ | highlight User4 ctermbg=05 ctermfg=07 cterm=NONE
@@ -61,12 +68,11 @@ augroup END
 " Display Ansible help \a  (toggle \a again to close)
 "
 function! AnsibleHelp()
-    let l:vimdir = fnamemodify(resolve(expand('$MYVIMRC:p')), ':h')
     if expand('%:t') == 'AnsibleCheatSheet.md'
         execute ':bd!'
         echon ''
     els    
-        execute ':tabedit ' . l:vimdir . '/cheatsheets/AnsibleCheatSheet.md'        
+        execute ':tabedit ' . g:vimdir . '/cheatsheets/AnsibleCheatSheet.md'        
         echon ''
     endif    
 endfunction
@@ -75,12 +81,11 @@ endfunction
 " Display Profile help \h  (toggle \h again to close) 
 "
 function! ProfileHelp()
-    let l:vimdir = fnamemodify(resolve(expand('$MYVIMRC:p')), ':h')
     if expand('%:t') == 'ProfileCheatSheet.md'
         execute ':bd!'
         echon ''
     els    
-        execute ':tabedit ' . l:vimdir . '/cheatsheets/ProfileCheatSheet.md'        
+        execute ':tabedit ' . g:vimdir . '/cheatsheets/ProfileCheatSheet.md'        
         echon ''
     endif    
 endfunction
@@ -89,12 +94,11 @@ endfunction
 " Display Linux help \l  (toggle \l again to close) 
 "
 function! LinuxHelp()
-    let l:vimdir = fnamemodify(resolve(expand('$MYVIMRC:p')), ':h')
     if expand('%:t') == 'LinuxCheatSheet.md'
         execute ':bd!'
         echon ''
     els    
-        execute ':tabedit ' . l:vimdir . '/cheatsheets/LinuxCheatSheet.md'        
+        execute ':tabedit ' . g:vimdir . '/cheatsheets/LinuxCheatSheet.md'        
         echon ''
     endif    
 endfunction
@@ -103,12 +107,11 @@ endfunction
 " Display Unicode help \u  (toggle \u again to close) 
 "
 function! UnicodeHelp()
-    let l:vimdir = fnamemodify(resolve(expand('$MYVIMRC:p')), ':h')
     if expand('%:t') == 'UnicodeCharacters.md'
         execute ':bd!'
         echon ''
     els    
-        execute ':tabedit ' . l:vimdir . '/cheatsheets/UnicodeCharacters.md'        
+        execute ':tabedit ' . g:vimdir . '/cheatsheets/UnicodeCharacters.md'        
         echon ''
     endif    
 endfunction
@@ -335,21 +338,19 @@ execute 'noremap! <silent> <f9> <C-o> :Limelight!!<CR>'
 " Configure Status line
 "--------------------------------------------------------------------------------------------------
 
-
 "
 " Status line definition.
 "
 " old info section: set statusline+=%-30.40(Info:\ \[%{&fileformat}\]\[%{&fileencoding?&fileencoding:&encoding}\]%y%r%m%) 
+" old help section: set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ F9=LL%)
 "
 set laststatus=2
 set statusline=
 set statusline+=%2*File:%-10.50(%t%m%r%)
 set statusline+=%1*
-"set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ F9=LL%)
 set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ %)
 set statusline+=%(F9=%{Limelight()}\ %{Option()}%)
 set statusline+=%=
-"set statusline+=%-90.90(%)
 set statusline+=%4*
 set statusline+=%-21.21(Pos:\[%n\]\ %p%%\ %l:%c%)
 set statusline+=%7.7(\ u%05.5B%)
