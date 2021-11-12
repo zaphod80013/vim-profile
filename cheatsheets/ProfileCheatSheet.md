@@ -12,4 +12,7 @@ Leader character is \ (backslash)
 \u      |Unicode Character Cheatsheet (toggle)
 \<space>|Cancel Search Highlight
 
+# format for filetype detect in ftdetect
 
+   filename: xxx.vim
+   Content:   au BufNewFile,BufRead *.pn set filetype=potion 

@@ -40,26 +40,6 @@ filetype indent on					" load type specific indent files from .../indent/<>.vim
 filetype plugin on                  " load type specific operations from .../plugin/<>.vim
 syntax enable                       " load type specific syntax rules from .../syntax/<>.vim
 
-"
-" Python Specific options
-"
-augroup Python
-   autocmd BufNewFile,BufRead *.py set filetype=python
-   autocmd FileType python map <buffer> <F10> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-   autocmd FileType python imap <buffer> <F10> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-augroup END
-
-"
-" Markdown specific options
-"
-augroup Markdown
-   autocmd!
-   autocmd BufNewFile,BufRead *.md set filetype=markdown
-   autocmd FileType markdown set cursorline
-   autocmd FileType markdown set conceallevel=2
-   autocmd FileType markdown setlocal spell spelllang=en_us
-augroup END
-
 "--------------------------------------------------------------------------------------------------
 " Custom Leader Functions
 "--------------------------------------------------------------------------------------------------
@@ -140,7 +120,7 @@ execute 'nnoremap <leader>l :call LinuxHelp() <cr>'
 "--------------------------------------------------------------------------------------------------
 
 "
-" Function to display state of number setting
+" Function to display state of number setting (lower case is on)
 "
 function! Number()
    let l:number = &number
@@ -148,7 +128,7 @@ function! Number()
 endfunction
 
 "
-" Function to display state of number setting
+" Function to display state of visible whitespace setting (lower case is visible)
 "
 function! List()
    let l:list = &list
@@ -156,7 +136,7 @@ function! List()
 endfunction
 
 "
-" Function to display state of expandtab setting
+" Function to display state of expandtab setting (lower case is spaces, upper is \t)
 "
 function! ExpandTab()
    let l:expand = &expandtab
@@ -164,7 +144,7 @@ function! ExpandTab()
 endfunction
 
 "
-" Function to display state of wrap
+" Function to display state of wrap  (lower case ai wrapped)
 "
 function! Wrap()
    let l:wrap = &wrap
@@ -172,7 +152,7 @@ function! Wrap()
 endfunction
 
 "
-" function to display state of spell
+" function to display state of spell (lower case is on)
 "
 function! Spell()
 	let l:spell = &spell
@@ -180,13 +160,13 @@ function! Spell()
 endfunction
 
 "
-" function to display state of spell
+" function to display state of LimeLight (lowercase is on )
 "
 function! Limelight()
    return !exists('#limelight')?'LLIGHT':'llight'
 endfunction
 "
-" function to display state of spell
+" function to run python source from buffer.
 "
 function! Option()
    return &filetype == 'python'?'F10=exec':'' 
@@ -212,11 +192,11 @@ let g:badwolf_css_props_highlight = 1           " Highlight css tags in html: 0 
 "
 "	Tabstops
 "
-set tabstop=4   	      	" Move 4 visual spaces per tab 
-set softtabstop=0       	" Move 4 spaces per tab when editing
+set tabstop=3   	      	" Move 3 visual spaces per tab 
+set softtabstop=0       	" Move 3 spaces per tab when editing
 set expandtab            	" Use spaces for tabs by default
-set shiftwidth=4				" ? not sure I understand this
-set smarttab					" insert shiftwidth at BOL tabstop elsewhere
+set shiftwidth=3			" ? not sure I understand this
+set smarttab				" insert shiftwidth at BOL tabstop elsewhere
 "
 "	Appearance
 "
@@ -332,6 +312,30 @@ noremap! <silent> <f6> <C-o>:setlocal spell!<CR>
 execute 'noremap  <silent> <f9>  :Limelight!!<CR>'
 execute 'noremap! <silent> <f9> <C-o> :Limelight!!<CR>'
 
+
+"--------------------------------------------------------------------------------------------------
+" Python Specific options
+"--------------------------------------------------------------------------------------------------
+
+augroup Python
+   autocmd BufNewFile,BufRead *.py set filetype=python
+   autocmd FileType python map <buffer> <F10> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+   autocmd FileType python imap <buffer> <F10> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+   autocmd BufNewFile,BufRead *.py set tabstop=4   	      
+   autocmd BufNewFile,BufRead *.py set shiftwidth=4	
+augroup END
+
+"--------------------------------------------------------------------------------------------------
+" Markdown specific options
+"--------------------------------------------------------------------------------------------------
+
+augroup Markdown
+   autocmd!
+   autocmd BufNewFile,BufRead *.md set filetype=markdown
+   autocmd FileType markdown set cursorline
+   autocmd FileType markdown set conceallevel=2
+   autocmd FileType markdown setlocal spell spelllang=en_us
+augroup END
 
 
 "--------------------------------------------------------------------------------------------------
