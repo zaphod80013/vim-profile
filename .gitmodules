@@ -13,3 +13,9 @@
 [submodule "pack/global/start/vim-markdown"]
 	path = pack/global/start/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "pack/global/start/yaml-folds"]
+	path = pack/global/start/yaml-folds
+	url = https://github.com/pedrohdz/vim-yaml-folds.git
+[submodule "after/pack/global/start/ale"]
+	path = after/pack/global/start/ale
+	url = https://github.com/dense-analysis/ale.git

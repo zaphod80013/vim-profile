@@ -9,6 +9,29 @@ let g:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')   " Save path to 
 "
 " let l:vimdir = fnamemodify(resolve(expand('$MYVIMRC:p')), ':h')
 "
+
+" ALE linter options
+"
+" specified the linter for javascript:             let g:ale_linters = { 'javascript': ['eslint'], ....}
+" only use the specified linters in ale_linters:   let g:ale_linters_explicit = 1
+" turn off highlighting:                           let g:ale_set_highlights = 0
+" map keys to navigate errors:                     nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"                                                  nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" Other:                                           let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"                                                  let g:ale_sign_error = '✘'
+"                                                  let g:ale_sign_warning = '⚠'
+"                                                  let g:ale_lint_on_text_changed = 'never'
+" Yaml requires:         pip3 install yamllint. 
+" Override rules:        edit ~/.config/yamllint/config
+"
+"                        extends: relaxed
+"
+"                        rules:
+"                          line-length: disable
+"
+"
+
+
 set nocompatible								" Turn off vi compatability
 set encoding=utf-8							" set default encoding to UTF-8
 scriptencoding utf-8							" Assume this script is utf-8 encoded
@@ -177,8 +200,8 @@ endfunction
 " Editor Theme Configuration
 "--------------------------------------------------------------------------------------------------
 
-colorscheme badwolf			    				" Set default colour scheme
-set termguicolors								" Enable 24bit colours
+colorscheme badwolf			    				      " Set default colour scheme
+set termguicolors						         		" Enable 24bit colours
 let g:badwolf_darkgutter = 1                    " Gutter darker than edit area: 0 off 1 on
 let g:badwolf_tabline = 0                       " Tab bar compared to edit area: 0) darker 1) same 
                                                 " 2) brighter 3) btigher still 
@@ -195,8 +218,8 @@ let g:badwolf_css_props_highlight = 1           " Highlight css tags in html: 0 
 set tabstop=3   	      	" Move 3 visual spaces per tab 
 set softtabstop=0       	" Move 3 spaces per tab when editing
 set expandtab            	" Use spaces for tabs by default
-set shiftwidth=3			" ? not sure I understand this
-set smarttab				" insert shiftwidth at BOL tabstop elsewhere
+set shiftwidth=3			   " ? not sure I understand this
+set smarttab				   " insert shiftwidth at BOL tabstop elsewhere
 "
 "	Appearance
 "
@@ -337,17 +360,10 @@ augroup Markdown
    autocmd FileType markdown setlocal spell spelllang=en_us
 augroup END
 
-
 "--------------------------------------------------------------------------------------------------
 " Configure Status line
 "--------------------------------------------------------------------------------------------------
 
-"
-" Status line definition.
-"
-" old info section: set statusline+=%-30.40(Info:\ \[%{&fileformat}\]\[%{&fileencoding?&fileencoding:&encoding}\]%y%r%m%) 
-" old help section: set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ F9=LL%)
-"
 set laststatus=2
 set statusline=
 set statusline+=%2*File:%-10.50(%t%m%r%)
