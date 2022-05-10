@@ -48,7 +48,7 @@ scriptencoding utf-8							" Assume this script is utf-8 encoded
 "
 augroup MyColors
     autocmd!
-    autocmd ColorScheme * highlight User1 ctermbg=06 ctermfg=00 cterm=NONE
+    autocmd ColorScheme * highlight User1 ctermbg=04 ctermfg=15 cterm=NONE
                       \ | highlight User2 ctermbg=02 ctermfg=00 cterm=NONE
                       \ | highlight User3 ctermbg=01 ctermfg=07 cterm=NONE
                       \ | highlight User4 ctermbg=05 ctermfg=07 cterm=NONE
