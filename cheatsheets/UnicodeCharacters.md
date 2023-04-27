@@ -2,7 +2,7 @@
 
 ## Writing Characters
 
-   00A0 - Non-breaking space  00A3  £  00A2  ¢   201C “  201D   ”   
+   00A0 ' ' Non-breaking space  00A3  £  00A2  ¢   201C “  201D   ”   
 
 ## Fractions
    
