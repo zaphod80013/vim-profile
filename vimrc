@@ -30,7 +30,7 @@ let g:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')   " Save path to 
 "                          line-length: disable
 "
 "
-
+let g:ale_enabled = 0
 
 set nocompatible								" Turn off vi compatability
 set encoding=utf-8							" set default encoding to UTF-8
@@ -194,6 +194,12 @@ endfunction
 function! Option()
    return &filetype == 'python'?'F10=exec':'' 
 endfunction
+"
+" Toggle ALE on/off
+"
+function! Ale()
+   return g:ale_enabled == 0?'ALE':'ale'
+endfunction
 
 
 "--------------------------------------------------------------------------------------------------
@@ -335,6 +341,10 @@ noremap! <silent> <f6> <C-o>:setlocal spell!<CR>
 execute 'noremap  <silent> <f9>  :Limelight!!<CR>'
 execute 'noremap! <silent> <f9> <C-o> :Limelight!!<CR>'
 
+execute 'noremap  <silent> <f10> :ALEToggle<CR>'
+execute 'noremap! <silent> <f10> <C-o> :ALEToggle<CR>'
+
+
 
 "--------------------------------------------------------------------------------------------------
 " Python Specific options
@@ -369,7 +379,7 @@ set statusline=
 set statusline+=%2*File:%-10.50(%t%m%r%)
 set statusline+=%1*
 set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ %)
-set statusline+=%(F9=%{Limelight()}\ %{Option()}%)
+set statusline+=%(F9=%{Limelight()}\ F10=%{Ale()}%)
 set statusline+=%=
 set statusline+=%4*
 set statusline+=%-21.21(Pos:\[%n\]\ %p%%\ %l:%c%)

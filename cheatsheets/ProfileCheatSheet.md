@@ -12,7 +12,25 @@ Leader character is \ (backslash)
 \u      |Unicode Character Cheatsheet (toggle)
 \<space>|Cancel Search Highlight
 
+## Status Bar
+
+Feature toggles UPPERCASE = feature turned off lowecase = feature turned on
+
+
 # format for filetype detect in ftdetect
 
+### See [this](https://learnvimscriptthehardway.stevelosh.com/chapters/44.html)
+
+
    filename: xxx.vim
-   Content:   au BufNewFile,BufRead *.pn set filetype=potion 
+   Content:  
+
+   au BufNewFile,BufRead *.pn set filetype=potion 
+
+   .... Filetype specific commands go here, examples
+
+   syntax keyword potionKeyword loop times to while
+   syntax keyword potionKeyword if elsif else
+   syntax keyword potionKeyword class return
+
+   highlight link potionKeyword Keyword
