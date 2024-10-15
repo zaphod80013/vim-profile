@@ -46,12 +46,18 @@ scriptencoding utf-8							" Assume this script is utf-8 encoded
 " rather than add. The 'autocmd!' is used to clear the group before adding, thus avoiding 
 " duplicates. 
 "
+" Original Settings   (Dont work well on cosmic)
+"  04 15
+"  02 00
+"  01 07
+"  05 07
+"
 augroup MyColors
     autocmd!
-    autocmd ColorScheme * highlight User1 ctermbg=04 ctermfg=15 cterm=NONE
+    autocmd ColorScheme * highlight User1 ctermbg=04 ctermfg=00 cterm=NONE
                       \ | highlight User2 ctermbg=02 ctermfg=00 cterm=NONE
                       \ | highlight User3 ctermbg=01 ctermfg=07 cterm=NONE
-                      \ | highlight User4 ctermbg=05 ctermfg=07 cterm=NONE
+                      \ | highlight User4 ctermbg=03 ctermfg=00 cterm=NONE
 augroup END
 
 "--------------------------------------------------------------------------------------------------
