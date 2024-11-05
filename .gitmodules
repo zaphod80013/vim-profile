@@ -19,3 +19,6 @@
 [submodule "after/pack/global/start/ale"]
 	path = after/pack/global/start/ale
 	url = https://github.com/dense-analysis/ale.git
+[submodule "pack/global/start/indentLine"]
+	path = pack/global/start/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
