@@ -61,6 +61,14 @@ augroup MyColors
 augroup END
 
 "--------------------------------------------------------------------------------------------------
+" Change file indentation marker char from ¦ to │ Using ⦙ causes alignment change
+"--------------------------------------------------------------------------------------------------
+
+let g:indentLine_char = '│'
+"let g:indentLine_color_term = 255
+let g:indentLine_enabled = 0
+
+"--------------------------------------------------------------------------------------------------
 "	File Type Management
 "--------------------------------------------------------------------------------------------------
 
@@ -198,7 +206,7 @@ endfunction
 " function to run python source from buffer.
 "
 function! Option()
-   return &filetype == 'python'?'F10=exec':'' 
+   return &filetype == 'python'?'F12=exec':'' 
 endfunction
 "
 " Toggle ALE on/off
@@ -207,6 +215,15 @@ function! Ale()
    return g:ale_enabled == 0?'ALE':'ale'
 endfunction
 
+"
+" function to display state IndentLine  (lower case is on)
+"
+function! Indent()
+   let l:ident = getbufvar(bufnr('%'), 'indentLine_enabled') 
+   return l:ident == 0?'IDENT':'ident'
+endfunction
+
+"
 
 "--------------------------------------------------------------------------------------------------
 " Editor Theme Configuration
@@ -268,16 +285,17 @@ hi SpellLocal ctermfg=00 cterm=underline ctermbg=11
 "
 nnoremap <space> za		
 
-"
+"--------------------------------------------------------------------------------------------------
 "	Search
-" 
+"--------------------------------------------------------------------------------------------------
+ 
 set incsearch           	" search as characters are entered
 set hlsearch            	" highlight matches
 set ignorecase smartcase 	" ignore case when searching
 
-"
+"--------------------------------------------------------------------------------------------------
 "	Cursor movement 
-"
+"--------------------------------------------------------------------------------------------------
 
 "	Move down by visual rather than file line
 noremap <down> g<down>		
@@ -347,8 +365,17 @@ noremap! <silent> <f6> <C-o>:setlocal spell!<CR>
 execute 'noremap  <silent> <f9>  :Limelight!!<CR>'
 execute 'noremap! <silent> <f9> <C-o> :Limelight!!<CR>'
 
+"
+" Toggle ALE on off
+"
 execute 'noremap  <silent> <f10> :ALEToggle<CR>'
 execute 'noremap! <silent> <f10> <C-o> :ALEToggle<CR>'
+
+"
+" Toggle IndentLine on off
+"
+execute 'noremap  <silent> <f11> :IndentLinesToggle<CR>'
+execute 'noremap! <silent> <f11> <C-o> :IndentLinesToggle<CR>'
 
 
 
@@ -358,8 +385,8 @@ execute 'noremap! <silent> <f10> <C-o> :ALEToggle<CR>'
 
 augroup Python
    autocmd BufNewFile,BufRead *.py set filetype=python
-   autocmd FileType python map <buffer> <F10> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-   autocmd FileType python imap <buffer> <F10> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+   autocmd FileType python map <buffer> <F12> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+   autocmd FileType python imap <buffer> <F12> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
    autocmd BufNewFile,BufRead *.py set tabstop=4   	      
    autocmd BufNewFile,BufRead *.py set shiftwidth=4	
 augroup END
@@ -385,7 +412,7 @@ set statusline=
 set statusline+=%2*File:%-10.50(%t%m%r%)
 set statusline+=%1*
 set statusline+=%(Help=\\\h\ F2=%{Number()}\ F3=%{List()}\ F4=%{ExpandTab()}\ F5=%{Wrap()}\ F6=%{Spell()}\ F7/8=P/N\ %)
-set statusline+=%(F9=%{Limelight()}\ F10=%{Ale()}%)
+set statusline+=%(F9=%{Limelight()}\ F10=%{Ale()}\ F11=%{Indent()}%)
 set statusline+=%=
 set statusline+=%4*
 set statusline+=%-21.21(Pos:\[%n\]\ %p%%\ %l:%c%)
