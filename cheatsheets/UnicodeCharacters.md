@@ -2,26 +2,35 @@
 
 ## Writing Characters
 
-   00A0 ' ' Non-breaking space  00A3  £  00A2  ¢   201C “  201D   ”   
+   00A0 ' ' Non-breaking space  00A3  £  00A2  ¢   201C “  201D   ” 
 
 ## Fractions
    
    Eighths  215B  ⅛  215C  ⅜  215D  ⅝  215E  ⅞   Sixths   2159  ⅙  215A  ⅚
    Fifths   21%%  ⅕  2156  ⅖  2157  ⅗  2158  ⅘   Fourths  00BC  ¼  00BE  ¾
-   Thirds   2153  ⅓  2154  ⅔                     Halves   00BD  ½    
+   Thirds   2153  ⅓  2154  ⅔                     Halves   00BD  ½ 
 
 ## Useful Synbols
 
-   2713  ✓  2714  ✔  2717  ✗  2718  ✘  2702  ✂  2704  ✄  2794  ➔  279B  ➛  259C  ➜ 
-   21BA  ↺  21BB  ↻  21C4  ⇄  21C5  ⇅  21C6  ⇆  21F5  ⇵  2026  …  00AE  ®  00A9  ©  00B0  °
-   23FB  ⏻  23FC  ⏼  23FD  ⏽ 2B58  ⭘  23FE  ⏾   00AB  «  00BB  »  00B7  ·    
-   265F  ♟  265D  ♝  265E  ♞  265C  ♜  265B  ♛  265A  ♚  2420  ␠
-   2659  ♙  2657  ♗  2658  ♘  2656  ♖  2655  ♕  2654  ♔
-♗           ♘ 
+   00A6  ¦  00A9  ©  00AB  «  00AE  ® 
+   00B0  °  00B7  ·  00BB  »
+   2026  …
+   21BA  ↺  21BB  ↻  21C4  ⇄  21C5  ⇅  21C6  ⇆  21F5  ⇵
+   2420  ␠
+   259C  ➜
+   2702  ✂  2704  ✄  2713  ✓  2714  ✔  2717  ✗  2718  ✘  2794  ➔  279B  ➛
+   23FB  ⏻  23FC  ⏼  23FD  ⏽ 23FE  ⏾
+   2999  ⦙
+   2B58  ⭘  2
+
+## Chess pieces 
+
+   265F  ♟  265D  ♝  265E  ♞  265C  ♜  265B  ♛  265A  ♚ 
+   2659  ♙  2657  ♗  2658  ♘  2656  ♖  2655  ♕  2654  ♔ 
 
 ## Keyboard Synbols 
   
-   2303  ⌃  2325  ⌥  2318  ⌘  23CE  ⏎  21E6  ⇦  21E7  ⇧  21E8  ⇨ 21E9  ⇩   2326  ⌦  
+   2303  ⌃  2325  ⌥  2318  ⌘  23CE  ⏎  21E6  ⇦  21E7  ⇧  21E8  ⇨ 21E9  ⇩   2326  ⌦ 
                               21B5  ↵  2190  ←  2191  ↑  2192  → 2193  ↓ 
 ## Subscript & SuperScripts
 
@@ -31,7 +40,7 @@
 ## Mathematical, Set & Logical Symbols
 
    Infinity          221E  ∞  Propotional       221D  ∝  Identical/Not     2261  ≡  2262  ≢ 
-   Not equal         2260  ≠  Almost Equal      2248  ≈  Element of/Not    2208  ∈  2209  ∉   
+   Not equal         2260  ≠  Almost Equal      2248  ≈  Element of/Not    2208  ∈  2209  ∉ 
    Asymptotically =  2243  ≃  Approximately  =  2245  ≅  Contains/Not      220B  ∋  220C  ∌
    Pi                1D745 𝝅  Plus/Minus        00B1  ±  Union/Intersect'n 222A  ∪  2229  ∩
    Square root       221A  √  Empty set         2205  ∅  Logical And/Or    2227  ∧  2228  ∨
