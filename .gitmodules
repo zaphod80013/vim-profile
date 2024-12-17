@@ -5,7 +5,7 @@
 	path = pack/global/start/unicode.vim
 	url = https://github.com/chrisbra/unicode.vim.git
 [submodule "pack/docker/start/Dockerfile.vim"]
-	path = pack/docker/start/Dockerfile.vim
+	path = submodules/Dockerfile.vim
 	url = https://github.com/ekalinin/Dockerfile.vim.git
 [submodule "pack/global/start/limelight.vim"]
 	path = pack/global/start/limelight.vim
