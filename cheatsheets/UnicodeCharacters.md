@@ -43,11 +43,11 @@
    Not equal         2260  ≠  Almost Equal      2248  ≈  Element of/Not    2208  ∈  2209  ∉ 
    Asymptotically =  2243  ≃  Approximately  =  2245  ≅  Contains/Not      220B  ∋  220C  ∌
    Pi                1D745 𝝅  Plus/Minus        00B1  ±  Union/Intersect'n 222A  ∪  2229  ∩
-   Square root       221A  √  Empty set         2205  ∅  Logical And/Or    2227  ∧  2228  ∨
+   Square root       221A  √  Empty set         2205  ∅ Logical And/Or    2227  ∧  2228  ∨
    Cube Root         221B  ∛  Subset of         2282  ⊂  There Exists/Not  2203  ∃  2204  ∄
    Fourth Root       221C  ∜  Superset of       2283  ⊃  Therefore/Because 2234  ∴  2235  ∵
-   V  Matrix Elipse  22EE  ⋮  H  Matrix Elipse  22Ef  ⋯  Daigonal Elipse   22F0  ⋰  22F1  ⋱
-   IFF IfOnlyIf      21D4  ⇔  Implies           21D2  ⇒  Less/Greater than 2264  ≤  2265  ≥ 
+   V  Matrix Elipse  22EE  ⋮  H  Matrix Elipse 22Ef  ⋯  Daigonal Elipse   22F0  ⋰  22F1  ⋱
+   IFF IfOnlyIf      21D4  ⇔  Implies          21D2 ⇒  Less/Greater than 2264  ≤  2265  ≥ 
    Logical not       00AC  ¬  Multiply          00D7  ×  Function/integral 0192  ƒ  222B  ∫
    p derivative      2202  ∂  Division          00F7  ÷
    

@@ -103,9 +103,14 @@ Alternatively if you wish to review the repository commits first do the followin
 
 These are the plugins I use, kudos to their respective authors
 
-1.   https://github.com/sjl/badwolf.git pack/global/start/badwolf
-1.   https://github.com/ekalinin/Dockerfile.vim.git pack/docker/start/Dockerfile.vim
-1.   https://github.com/chrisbra/unicode.vim.git pack/global/start/unicode.vim
+1.   https://github.com/sjl/badwolf.git             Colour scheme
+1.   https://github.com/ekalinin/Dockerfile.vim.git Docker file support
+1.   https://github.com/chrisbra/unicode.vim.git    Unicode support
+1.   https://github.com/junegunn/limelight.vim.git  Focused editing
+1.   https://github.com/plasticboy/vim-markdown.git Markdown support
+1.   https://github.com/pedrohdz/vim-yaml-folds.git Yaml support
+1.   https://github.com/dense-analysis/ale.git      Linting
+1.   https://github.com/Yggdroot/indentLine.git     Indentation level support
 
 
 ## Profile Documentation

@@ -73,9 +73,9 @@ let g:indentLine_enabled = 0
 "--------------------------------------------------------------------------------------------------
 
 filetype on                         " Enable file type recognition
-filetype indent on					" load type specific indent files from .../indent/<>.vim
+filetype indent on					   " load type specific indent files from .../indent/<>.vim
 filetype plugin on                  " load type specific operations from .../plugin/<>.vim
-"syntax enable                       " load type specific syntax rules from .../syntax/<>.vim
+"syntax enable                      " load type specific syntax rules from .../syntax/<>.vim
 
 "--------------------------------------------------------------------------------------------------
 " Custom Leader Functions
@@ -410,6 +410,20 @@ augroup END
 augroup yaml
     autocmd!
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+augroup END
+
+" Ansible variable template file
+
+augroup var
+    autocmd!
+    autocmd BufRead,BufNewFile *.var setfiletype yaml
+augroup END
+
+" Ansible Vault Template file
+
+augroup vlt
+    autocmd!
+    autocmd BufRead,BufNewFile *.vlt setfiletype yaml
 augroup END
 
 
