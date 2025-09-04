@@ -75,7 +75,7 @@ let g:indentLine_enabled = 0
 filetype on                         " Enable file type recognition
 filetype indent on					   " load type specific indent files from .../indent/<>.vim
 filetype plugin on                  " load type specific operations from .../plugin/<>.vim
-"syntax enable                      " load type specific syntax rules from .../syntax/<>.vim
+syntax enable                       " load type specific syntax rules from .../syntax/<>.vim
 
 "--------------------------------------------------------------------------------------------------
 " Custom Leader Functions
