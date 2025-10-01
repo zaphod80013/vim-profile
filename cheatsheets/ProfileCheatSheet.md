@@ -16,6 +16,19 @@ Leader character is \ (backslash)
 
 Feature toggles UPPERCASE = feature turned off lowecase = feature turned on
 
+## Spelling
+
+| :----| :----
+|z= | For the word under/after the cursor suggest correctly spelled words or alternatives.
+|]s | Move to next misspelled word after the cursor.
+|[s | Like "]s" but search backwards, find the misspelled  word before the cursor.
+|]S | Like "]s" but only stop at bad words, not at rare words or words for another region.
+|[S | Like "]S" but search backwards.
+|zg | Add word under the cursor as a good word first name in 'spellfile'
+|zG | Like "zg" but add the word to the internal word list
+|zw | Like "zg" but mark the word as a wrong (bad) word.
+|zW | Like "zw" but add the word to the internal word list
+                                                        [S
 
 # format for filetype detect in ftdetect
 
@@ -34,3 +47,4 @@ Feature toggles UPPERCASE = feature turned off lowecase = feature turned on
    syntax keyword potionKeyword class return
 
    highlight link potionKeyword Keyword
+
